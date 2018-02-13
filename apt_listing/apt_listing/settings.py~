@@ -51,28 +51,22 @@ DOWNLOAD_DELAY = 3
 #SPIDER_MIDDLEWARES = {
 #    'apt_listing.middlewares.AptListingSpiderMiddleware': 543,
 #}
-CONCURRENT_REQUESTS_PER_DOMAIN = 1
-RETRY_TIMES = 0
 
-# PROXY
-PROXY = 'http://127.0.0.1:8888/?noconnect'
-
-# SCRAPOXY
-API_SCRAPOXY = 'http://127.0.0.1:8889/api'
-API_SCRAPOXY_PASSWORD = 'GetmeaSecureline!'
-
-DOWNLOADER_MIDDLEWARES = {
-    'scrapoxy.downloadmiddlewares.proxy.ProxyMiddleware': 100,
-    'scrapoxy.downloadmiddlewares.wait.WaitMiddleware': 101,
-    'scrapoxy.downloadmiddlewares.scale.ScaleMiddleware': 102,
-    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': None,
-}
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
 #    'apt_listing.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
-
+from scraper.settings import USER_AGENT_LIST
+import random
+from scrapy import log
+ 
+class RandomUserAgentMiddleware(object):
+ 
+    def process_request(self, request, spider):
+        ua  = random.choice(USER_AGENT_LIST)
+        if ua:
+            request.headers.setdefault('User-Agent', ua)
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
 #EXTENSIONS = {

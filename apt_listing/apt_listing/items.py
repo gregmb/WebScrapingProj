@@ -11,13 +11,16 @@ from scrapy import Field
 class AptListingItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    address = Field
-    neighborhood = Field
-    bedrooms = Field
-    bath = Field
-    SqFt = Field
-    features = Field
-    description = Field
-    age = Field
-    incm_restr = Field
-    crime = Field
+    address = Field()
+    neighborhood = Field()
+    bedrooms = Field()
+    bath = Field()
+    SqFt = Field()
+    features = Field()
+    description = Field()
+    age = Field()
+    incm_restr = Field()
+    crime = Field()
+    price = Field()
+    site = Field()
+    floorplan = Field()
